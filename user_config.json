@@ -1,0 +1,24 @@
+{
+  "site_name": "Sarah Chen",
+  "tagline": "UX Consultant — Designing experiences people love.",
+  "owner_name": "Sarah Chen",
+  "email": "hello@sarahchen.design",
+  "phone": "",
+  "address": "San Francisco, CA",
+  "hours": "",
+  "colors": {
+    "primary": "#0f172a",
+    "secondary": "#f8fafc",
+    "accent": "#6366f1"
+  },
+  "social": {
+    "instagram": "https://instagram.com/sarahchenux",
+    "facebook": "",
+    "twitter": "https://twitter.com/sarahchenux",
+    "linkedin": "https://linkedin.com/in/sarahchenux",
+    "tiktok": ""
+  },
+  "analytics_id": "",
+  "formspree_id": "xpznqwkl",
+  "custom_domain": ""
+}
