@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import config from '../../user_config.json'
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
@@ -12,11 +13,12 @@ export default function Contact() {
     if (data.get('_gotcha')) return
 
     try {
-      await fetch('https://formspree.io/f/xpznqwkl', {
+      const res = await fetch(`https://formspree.io/f/${config.formspree_id}`, {
         method: 'POST',
         body: data,
         headers: { Accept: 'application/json' },
       })
+      if (!res.ok) throw new Error(res.statusText)
       setSubmitted(true)
     } catch {
       alert('Something went wrong. Please try again.')
@@ -27,13 +29,17 @@ export default function Contact() {
     <section className="px-6 py-24">
       <div className="max-w-5xl mx-auto">
         <div className="max-w-xl">
-          <p className="text-[#6366f1] font-medium text-sm tracking-widest uppercase mb-3">Contact</p>
+          <p className="text-[var(--accent)] font-medium text-sm tracking-widest uppercase mb-3">Contact</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Let's Talk</h1>
           <p className="text-gray-500 text-lg mb-12">
-            Have a project idea, a question, or just want to say hi? Fill out the form and I'll get back to you within 24 hours.
+            {config.contact_text}
           </p>
 
-          {submitted ? (
+          {!config.formspree_id ? (
+            <a href={`mailto:${config.email}`} className="inline-block bg-[var(--accent)] hover:brightness-90 text-white px-8 py-3.5 rounded-full font-medium transition">
+              Email {config.email}
+            </a>
+          ) : submitted ? (
             <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center">
               <h3 className="text-xl font-bold text-emerald-800 mb-2">Message sent!</h3>
               <p className="text-emerald-600">Thanks for reaching out. I'll get back to you soon.</p>
@@ -50,7 +56,7 @@ export default function Contact() {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#6366f1] focus:ring-2 focus:ring-[#6366f1]/20 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 outline-none transition-all"
                   placeholder="Your name"
                 />
               </div>
@@ -62,7 +68,7 @@ export default function Contact() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#6366f1] focus:ring-2 focus:ring-[#6366f1]/20 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 outline-none transition-all"
                   placeholder="you@example.com"
                 />
               </div>
@@ -72,13 +78,11 @@ export default function Contact() {
                 <select
                   id="project"
                   name="project"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#6366f1] focus:ring-2 focus:ring-[#6366f1]/20 outline-none transition-all bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 outline-none transition-all bg-white"
                 >
-                  <option value="ux-audit">UX Audit</option>
-                  <option value="product-design">Product Design</option>
-                  <option value="design-system">Design System</option>
-                  <option value="consulting">Consulting</option>
-                  <option value="other">Other</option>
+                  {config.contact_options.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
                 </select>
               </div>
 
@@ -89,14 +93,14 @@ export default function Contact() {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#6366f1] focus:ring-2 focus:ring-[#6366f1]/20 outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20 outline-none transition-all resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="bg-[#6366f1] hover:bg-[#4f46e5] text-white px-8 py-3.5 rounded-full font-medium transition-colors w-full md:w-auto"
+                className="bg-[var(--accent)] hover:brightness-90 text-white px-8 py-3.5 rounded-full font-medium transition w-full md:w-auto"
               >
                 Send Message
               </button>
@@ -108,22 +112,26 @@ export default function Contact() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="font-bold mb-2">Email</h3>
-              <a href="mailto:hello@sarahchen.design" className="text-gray-500 hover:text-[#6366f1] transition-colors">
-                hello@sarahchen.design
+              <a href={`mailto:${config.email}`} className="text-gray-500 hover:text-[var(--accent)] transition-colors">
+                {config.email}
               </a>
             </div>
             <div>
               <h3 className="font-bold mb-2">Location</h3>
-              <p className="text-gray-500">San Francisco, CA</p>
+              <p className="text-gray-500">{config.location}</p>
             </div>
-            <div>
-              <h3 className="font-bold mb-2">Social</h3>
-              <div className="flex gap-4">
-                <a href="https://linkedin.com/in/sarahchenux" target="_blank" rel="noopener" className="text-gray-500 hover:text-[#6366f1] transition-colors text-sm">LinkedIn</a>
-                <a href="https://twitter.com/sarahchenux" target="_blank" rel="noopener" className="text-gray-500 hover:text-[#6366f1] transition-colors text-sm">Twitter</a>
-                <a href="https://instagram.com/sarahchenux" target="_blank" rel="noopener" className="text-gray-500 hover:text-[#6366f1] transition-colors text-sm">Instagram</a>
+            {Object.values(config.social).some(Boolean) && (
+              <div>
+                <h3 className="font-bold mb-2">Social</h3>
+                <div className="flex gap-4">
+                  {Object.entries(config.social)
+                    .filter(([, url]) => url)
+                    .map(([name, url]) => (
+                      <a key={name} href={url} target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--accent)] transition-colors text-sm capitalize">{name}</a>
+                    ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

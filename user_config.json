@@ -1,24 +1,44 @@
 {
   "site_name": "Sarah Chen",
-  "tagline": "UX Consultant — Designing experiences people love.",
-  "owner_name": "Sarah Chen",
-  "email": "hello@sarahchen.design",
-  "phone": "",
-  "address": "San Francisco, CA",
-  "hours": "",
+  "role": "UX Consultant",
+  "headline": "Designing experiences people love.",
+  "intro": "I help small teams turn messy problems into simple products. Based in San Francisco.",
+  "email": "hello@example.com",
+  "location": "San Francisco, CA",
   "colors": {
     "primary": "#0f172a",
     "secondary": "#f8fafc",
     "accent": "#6366f1"
   },
   "social": {
-    "instagram": "https://instagram.com/sarahchenux",
-    "facebook": "",
-    "twitter": "https://twitter.com/sarahchenux",
-    "linkedin": "https://linkedin.com/in/sarahchenux",
-    "tiktok": ""
+    "linkedin": "",
+    "instagram": "",
+    "twitter": ""
   },
-  "analytics_id": "",
-  "formspree_id": "xpznqwkl",
-  "custom_domain": ""
+  "stats": [],
+  "services": [
+    { "name": "User Research", "description": "Interviews and usability tests to find what people actually need." },
+    { "name": "UX Strategy", "description": "Lining up what the business needs with what the user is trying to do." },
+    { "name": "UI Design", "description": "Clean, accessible screens that are easy to use." },
+    { "name": "Design Systems", "description": "Reusable components that keep a product consistent." }
+  ],
+  "projects": [
+    {
+      "title": "Sample project one",
+      "category": "Health",
+      "description": "Say what you did, for whom, and what changed. Only use numbers you can show.",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80",
+      "link": ""
+    },
+    {
+      "title": "Sample project two",
+      "category": "Finance",
+      "description": "Replace these with your real work. Two real projects beat six made up ones.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+      "link": ""
+    }
+  ],
+  "contact_text": "Have a project idea or a question? Send a message and I will get back to you.",
+  "contact_options": ["UX Audit", "Product Design", "Design System", "Consulting", "Other"],
+  "formspree_id": ""
 }
